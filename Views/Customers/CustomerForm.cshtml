@@ -1,31 +1,37 @@
-﻿@model Vidly.ViewModels.NewCustomerViewModel
+﻿@model Vidly.ViewModels.FormCustomerViewModel
 
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "FormCustomerViewModel";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>New</h2>
 
-@using (Html.BeginForm("Create", "Customers"))
+@using (Html.BeginForm("Save", "Customers"))
 {
+    @Html.ValidationSummary();
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.Name)
         @Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Customer.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.BirthDate)
-        @Html.TextBoxFor(c => c.Customer.BirthDate, new { @class = "form-control" })
-    </div>
-    <div class="checkbox">
-        <label>
-            @Html.CheckBoxFor(c => c.Customer.IsSubscribedToNewsletter) Subscribe to Newsletter
-        </label>
+        @Html.TextBoxFor(c => c.Customer.BirthDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Customer.BirthDate)
     </div>
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.MembershipType)
         @Html.DropDownListFor(c => c.Customer.MembershipType, new SelectList(Model.MembershipTypes, "Id", "Name"), new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Customer.BirthDate)
     </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(c => c.Customer.IsSubscribedToNewsletter) Subscribe to Newsletter
+            @Html.ValidationMessageFor(c => c.Customer.IsSubscribedToNewsletter)
+        </label>
+    </div>
+    @Html.HiddenFor(c => c.Customer.Id);
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
