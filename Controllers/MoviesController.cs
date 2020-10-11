@@ -75,10 +75,15 @@ namespace Vidly.Controllers
         public ActionResult New()
         {
             var genreList = _context.Genres.ToList();
+            var movie = new Movie
+            {
+                NumberInStock = 0
+            };
 
             var formMovieViewModel = new FormMovieViewModel
             {
-                Genres = genreList
+                Genres = genreList,
+                Movie = movie
             };
 
             return View("MovieForm", formMovieViewModel);
@@ -102,8 +107,20 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var genreList = _context.Genres.ToList();
+                var formMovieViewModel = new FormMovieViewModel
+                {
+                    Movie = movie,
+                    Genres = genreList
+                };
+
+                return View("MovieForm", formMovieViewModel);
+            }
             if (movie.Id == 0)
                 _context.Movies.Add(movie);
 
