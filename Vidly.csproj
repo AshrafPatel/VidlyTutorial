@@ -277,6 +277,10 @@
     <Compile Include="Migrations\202011011632093_AddDrivingLicenseToidentityUser.Designer.cs">
       <DependentUpon>202011011632093_AddDrivingLicenseToidentityUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011012203038_RemoveRequiredGenreFromMovie.cs" />
+    <Compile Include="Migrations\202011012203038_RemoveRequiredGenreFromMovie.Designer.cs">
+      <DependentUpon>202011012203038_RemoveRequiredGenreFromMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -586,6 +590,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011011632093_AddDrivingLicenseToidentityUser.resx">
       <DependentUpon>202011011632093_AddDrivingLicenseToidentityUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011012203038_RemoveRequiredGenreFromMovie.resx">
+      <DependentUpon>202011012203038_RemoveRequiredGenreFromMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
