@@ -23,7 +23,7 @@
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.MembershipType)
         @Html.DropDownListFor(c => c.Customer.MembershipType, new SelectList(Model.MembershipTypes, "Id", "Name"), new { @class = "form-control" })
-        @Html.ValidationMessageFor(c => c.Customer.BirthDate)
+        @Html.ValidationMessageFor(c => c.Customer.MembershipType)
     </div>
     <div class="checkbox">
         <label>
