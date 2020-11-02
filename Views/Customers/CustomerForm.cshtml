@@ -5,33 +5,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New</h2>
+
+@if (Model.Id == 0)
+{<h2>New Customer</h2>}
+else
+{ <h2>Edit Customer</h2>}
+
 
 @using (Html.BeginForm("Save", "Customers"))
 {
     @Html.ValidationSummary();
     <div class="form-group">
-        @Html.LabelFor(c => c.Customer.Name)
-        @Html.TextBoxFor(c => c.Customer.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(c => c.Customer.Name)
+        @Html.LabelFor(c => c.Name)
+        @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Name)
     </div>
     <div class="form-group">
-        @Html.LabelFor(c => c.Customer.BirthDate)
-        @Html.TextBoxFor(c => c.Customer.BirthDate, "{0:d MMM yyyy}", new { @class = "form-control" })
-        @Html.ValidationMessageFor(c => c.Customer.BirthDate)
+        @Html.LabelFor(c => c.BirthDate)
+        @Html.TextBoxFor(c => c.BirthDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.BirthDate)
     </div>
     <div class="form-group">
-        @Html.LabelFor(c => c.Customer.MembershipType)
-        @Html.DropDownListFor(c => c.Customer.MembershipType, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
-        @Html.ValidationMessageFor(c => c.Customer.MembershipType)
+        @Html.LabelFor(c => c.MemberShipTypeId)
+        @Html.DropDownListFor(c => c.MemberShipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.MemberShipTypeId)
     </div>
     <div class="checkbox">
         <label>
-            @Html.CheckBoxFor(c => c.Customer.IsSubscribedToNewsletter) Subscribe to Newsletter
-            @Html.ValidationMessageFor(c => c.Customer.IsSubscribedToNewsletter)
+            @Html.CheckBoxFor(c => c.IsSubscribedToNewsletter) Subscribe to Newsletter
+            @Html.ValidationMessageFor(c => c.IsSubscribedToNewsletter)
         </label>
     </div>
-    @Html.HiddenFor(c => c.Customer.Id);
+    @Html.HiddenFor(c => c.Id);
     @Html.AntiForgeryToken();
     <button type="submit" class="btn btn-primary">Save</button>
 }
