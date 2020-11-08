@@ -7,6 +7,7 @@ using Vidly.Models;
 using Vidly.ViewModels;
 using System.Data.Entity;
 using AutoMapper;
+using System.Runtime.Caching;
 
 namespace Vidly.Controllers
 {
@@ -28,6 +29,10 @@ namespace Vidly.Controllers
         //GET: Movies
         public ViewResult Index()
         {
+            if (MemoryCache.Default["Genres"] == null)
+            {
+                MemoryCache.Default["Genres"] = _context.Genres.ToList();
+            }
             if (User.IsInRole(RoleName.CanManageMovies))
                 return View("List");
             return View("ReadOnlyList");

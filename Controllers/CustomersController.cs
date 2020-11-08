@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Vidly.Models;
 using System.Data.Entity;
 using Vidly.ViewModels;
+using System.Runtime.Caching;
 
 namespace Vidly.Controllers
 {
@@ -31,6 +32,10 @@ namespace Vidly.Controllers
 
         public ViewResult Index()
         { 
+            if (MemoryCache.Default["MembershipTypes"] == null)
+            {
+                MemoryCache.Default["MembershipTypes"] = _context.MembershipTypes.ToList();
+            }
             return View();
         }
 
